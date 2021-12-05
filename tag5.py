@@ -1,10 +1,10 @@
-import re
+from re import findall as findall
 
 floor = {}
 
 with open("tag5.txt") as f:
     for line in f:
-        l = re.findall(r"[0-9]+", line)
+        l = findall(r"[0-9]+", line)
         l = [int(x) for x in l]
         #same x
         if l[0] == l[2]:
@@ -28,14 +28,9 @@ with open("tag5.txt") as f:
                     floor[key] = 1
         #diagonal, skip if you wanna solve part 1
         elif abs(l[0] - l[2]) == abs(l[1] - l[3]):
-            if l[0] < l[2]:
-                stepx = 1
-            else:
-                stepx = -1
-            if l[1] < l[3]:
-                stepy = 1
-            else:
-                stepy = -1
+            stepx = 1 if (l[0] < l[2]) else -1
+            stepy = 1 if (l[1] < l[3]) else -1
+            
             for i in range(abs(l[0] - l[2])+1):
                 key = f"{l[0] + i * stepx},{l[1] + i * stepy}"
                 if key in floor:
