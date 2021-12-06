@@ -31,23 +31,13 @@ class Fish:
             return(Fish.cache[days])
         else:
             #fish 8
-            remaining = days - 9
-            if remaining in Fish.cache:
-                res1 = Fish.cache[remaining]
-            else:
-                res1 = Fish().getLength(remaining)
-                Fish.cache[remaining] = res1
+            res1 = Fish().getLength(days - 9)
             #fish 6   
-            remaining = days - 7
-            if remaining in Fish.cache:
-                res2 = Fish.cache[remaining]
-            else:
-                res2 = Fish().getLength(remaining)
-                Fish.cache[remaining] = res2
-            res = res1+res2
+            res2 = Fish().getLength(days - 7)
+            res = res1 + res2
             Fish.cache[days] = res
             return(res)
-            
+
 
 with open("tag6.txt") as f:
     for line in f:
